@@ -10,41 +10,80 @@
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/nav.css" />
+    <link rel="stylesheet" href="./styles/mobileNav.css" />
     <title>Ecommerce product page</title>
   </head>
   <body>
-    <nav class="nav">
-      <div class="nav__container">
-        <button aria-label="toggle menu" class="nav__hamburger">
+    <!-- MOBILE NAVIGATION -->
+    <nav class="mobileNav">
+      <div class="mobileNav__container">
+        <button aria-label="toggle menu" class="mobileNav__hamburger">
           <img src="./images/icon-menu.svg" alt="" />
         </button>
-        <div class="nav__logo">
+        <div class="mobileNav__logo">
           <img src="./images/logo.svg" />
         </div>
-        <ul class="nav__links">
-          <button aria-label="close menu" class="nav__close">
+        <ul class="mobileNav__links">
+          <div
+            tabindex="0"
+            class="mobileNav__links__topFocusTrap"
+            onfocus="redirectFocus('bottom')"
+          ></div>
+          <button aria-label="close menu" class="mobileNav__close">
             <img src="./images/icon-close.svg" alt="" />
           </button>
           <li><a href="#">Collections</a></li>
           <li><a href="#">Men</a></li>
           <li><a href="#">Women</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li>
+            <a href="#" class="mobileNav__links__lastFocusableElement"
+              >Contact</a
+            >
+          </li>
+          <div
+            tabindex="0"
+            class="mobileNav__links__bottomFocusTrap"
+            onfocus="redirectFocus('top')"
+          ></div>
         </ul>
-        <div class="nav__links__mobile__backdrop"></div>
+        <div class="mobileNav__backdrop"></div>
       </div>
-
-      <div class="nav__container">
-        <button class="nav__cart" aria-label="shopping cart toggle">
+      <div class="mobileNav__container">
+        <button class="mobileNav__cart" aria-label="shopping cart toggle">
           <img src="./images/icon-cart.svg" alt="" />
         </button>
-        <div class="nav__avatar">
+        <div tabindex="0" class="mobileNav__avatar">
           <img src="images/image-avatar.png" alt="" />
         </div>
       </div>
     </nav>
-    <script src="./main.js" defer></script>
-    <script src="./toggleNav.js" defer></script>
+    <!-- DESKTOP NAVIGATION -->
+    <nav class="nav">
+      <div class="nav__container">
+        <div class="nav__logo">
+          <img src="./images/logo.svg" />
+        </div>
+        <ul class="nav__links">
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav__container">
+        <button class="nav__cart" aria-label="shopping cart toggle">
+          <img src="./images/icon-cart.svg" alt="" />
+        </button>
+        <div class="nav__avatar" tabindex="0">
+          <img src="images/image-avatar.png" alt="" />
+        </div>
+      </div>
+    </nav>
+    <script src="./js/main.js" defer></script>
+    <script src="./js/mobileNav.js" defer></script>
   </body>
 </html>
