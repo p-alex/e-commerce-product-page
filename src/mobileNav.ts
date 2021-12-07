@@ -13,8 +13,8 @@ const mobileBackdrop = document.querySelector(
 const cartBtn = document.querySelector(".mobileNav__cart") as HTMLButtonElement;
 
 hamburger.addEventListener("click", (): void => {
-  closeBtn.focus();
   navContainer.style.display = "block";
+  closeBtn.focus();
   navContainer.classList.add("mobileNav-active");
   mobileBackdrop.classList.add("mobileNav-active");
 });
