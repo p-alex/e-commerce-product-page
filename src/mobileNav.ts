@@ -12,6 +12,7 @@ const mobileBackdrop = document.querySelector(
 ) as HTMLDivElement;
 const cartBtn = document.querySelector(".mobileNav__cart") as HTMLButtonElement;
 
+// TOGGLE MOBILE NAV
 hamburger.addEventListener("click", (): void => {
   navContainer.style.display = "block";
   closeBtn.focus();
@@ -36,6 +37,7 @@ mobileBackdrop.addEventListener("click", (): void => closeMobileNav());
 const lastFocusableElement = document.querySelector(
   ".mobileNav__links__lastFocusableElement"
 ) as HTMLAnchorElement;
+
 function redirectFocus(position: "top" | "bottom"): void {
   if (navContainer.classList.contains("mobileNav-active")) {
     if (position === "top") {
