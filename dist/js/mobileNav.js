@@ -21,7 +21,7 @@ function closeMobileNav() {
 closeBtn.addEventListener("click", function () { return closeMobileNav(); });
 mobileBackdrop.addEventListener("click", function () { return closeMobileNav(); });
 // FOCUS TRAP
-var lastFocusableElement = document.querySelector(".mobileNav__links__lastFocusableElement");
+var lastFocusableElement = document.querySelector(".mobileNav __lastFocusableElement");
 function redirectFocus(position) {
     if (navContainer.classList.contains("mobileNav-active")) {
         if (position === "top") {

@@ -35,7 +35,7 @@ mobileBackdrop.addEventListener("click", (): void => closeMobileNav());
 
 // FOCUS TRAP
 const lastFocusableElement = document.querySelector(
-  ".mobileNav__links__lastFocusableElement"
+  ".mobileNav __lastFocusableElement"
 ) as HTMLAnchorElement;
 
 function redirectFocus(position: "top" | "bottom"): void {
