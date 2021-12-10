@@ -67,7 +67,7 @@ function appendImagesContainer(name, images) {
             thumbnailBtn.setAttribute("aria-label", name + " thumbnail " + id);
             thumbnailBtn.classList.add("product__thumbnailBtn");
             var thumbnail = document.createElement("img");
-            thumbnail.src = "../dist/images/" + image.thumbnail;
+            thumbnail.src = "images/" + image.thumbnail;
             thumbnail.width = 90;
             thumbnail.height = 90;
             thumbnail.classList.add("product__thumbnail");

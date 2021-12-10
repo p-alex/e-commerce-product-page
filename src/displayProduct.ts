@@ -32,7 +32,7 @@ function appendImagesContainer(name: string, images: imagesInterface[]): void {
       thumbnailBtn.setAttribute("aria-label", `${name} thumbnail ${id}`);
       thumbnailBtn.classList.add("product__thumbnailBtn");
       const thumbnail = document.createElement("img") as HTMLImageElement;
-      thumbnail.src = `../dist/images/${image.thumbnail}`;
+      thumbnail.src = `images/${image.thumbnail}`;
       thumbnail.width = 90;
       thumbnail.height = 90;
       thumbnail.classList.add("product__thumbnail");
