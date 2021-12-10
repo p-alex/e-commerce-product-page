@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist/js"
+    "outDir": "./dist/js",
+    "lib": ["ES2015", "DOM"]
   }
 }

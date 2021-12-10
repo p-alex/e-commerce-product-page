@@ -6,29 +6,29 @@ const mobileCartToggle = document.querySelector(
 
 // Nav cart preview divs for desktop and mobile nav
 const navCartPreview = document.querySelector(
-  ".nav__cart__preview"
+  ".nav__cartPreview"
 ) as HTMLDivElement;
 
 const mobileNavCartPreview = document.querySelector(
-  ".mobileNav__cart__preview"
+  ".mobileNav__cartPreview"
 ) as HTMLDivElement;
 
 // Adding html to desktop and mobile nav
 navCartPreview.innerHTML = `
-    <p class="nav__cart__preview__title">Cart</p>
-    <ul class="nav__cart__preview__list"></ul>
+    <p class="nav__cartPreviewTitle">Cart</p>
+    <ul class="nav__cartPreviewList"></ul>
 `;
 mobileNavCartPreview.innerHTML = `
-    <p class="mobileNav__cart__preview__title">Cart</p>
-    <ul class="mobileNav__cart__preview__list"></ul>
+    <p class="mobileNav__cartPreviewTitle">Cart</p>
+    <ul class="mobileNav__cartPreviewList"></ul>
 `;
 
 // Cart lists for desktop and mobile cart previews
 const navCartList = document.querySelector(
-  ".nav__cart__preview__list"
+  ".nav__cartPreviewList"
 ) as HTMLUListElement;
 const mobileNavCartList = document.querySelector(
-  ".mobileNav__cart__preview__list"
+  ".mobileNav__cartPreviewList"
 ) as HTMLUListElement;
 
 //Toggle cart preview for desktop and mobile
@@ -71,7 +71,7 @@ function checkForProducts(options: checkForProductsInterface): void {
   function appendNoProductsPragraph(element: HTMLUListElement, type: string) {
     noProductsMessage = document.createElement("p") as HTMLParagraphElement;
     noProductsMessage.innerText = "No products in cart";
-    noProductsMessage.classList.add(`${type}__cart__preview__noProducts`);
+    noProductsMessage.classList.add(`${type}__cartPreviewNoProducts`);
     element.appendChild(noProductsMessage);
   }
 }

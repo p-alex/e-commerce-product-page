@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./styles/nav.css" />
     <link rel="stylesheet" href="./styles/mobileNav.css" />
     <link rel="stylesheet" href="./styles/cart.css" />
+    <link rel="stylesheet" href="./styles/productMain.css" />
     <title>Ecommerce product page</title>
   </head>
   <body>
@@ -29,7 +30,7 @@
         <ul class="mobileNav__links">
           <div
             tabindex="0"
-            class="mobileNav__links__topFocusTrap"
+            class="mobileNav__topFocusTrap"
             onfocus="redirectFocus('bottom')"
           ></div>
           <button aria-label="close menu" class="mobileNav__close">
@@ -40,13 +41,11 @@
           <li><a href="#">Women</a></li>
           <li><a href="#">About</a></li>
           <li>
-            <a href="#" class="mobileNav__links__lastFocusableElement"
-              >Contact</a
-            >
+            <a href="#" class="mobileNav__lastFocusableElement">Contact</a>
           </li>
           <div
             tabindex="0"
-            class="mobileNav__links__bottomFocusTrap"
+            class="mobileNav__bottomFocusTrap"
             onfocus="redirectFocus('top')"
           ></div>
         </ul>
@@ -56,7 +55,7 @@
         <button class="mobileNav__cart" aria-label="shopping cart toggle">
           <img src="./images/icon-cart.svg" alt="" />
         </button>
-        <div class="mobileNav__cart__preview"></div>
+        <div class="mobileNav__cartPreview"></div>
         <div tabindex="0" class="mobileNav__avatar">
           <img src="images/image-avatar.png" alt="" />
         </div>
@@ -80,15 +79,44 @@
         <button class="nav__cart" aria-label="shopping cart toggle">
           <img src="./images/icon-cart.svg" alt="" />
         </button>
-        <div class="nav__cart__preview"></div>
+        <div class="nav__cartPreview"></div>
         <div class="nav__avatar" tabindex="0">
           <img src="images/image-avatar.png" alt="" />
         </div>
       </div>
     </nav>
-    <main class="product"></main>
-    <script src="./js/main.js" defer></script>
+
+    <!-- PRODUCT -->
+    <main class="product">
+      <section class="product__imagesGridContainer"></section>
+      <section class="product__detailsContainer">
+        <p class="product__company"></p>
+        <h1 class="product__name"></h1>
+        <p class="product__description"></p>
+        <div class="product__priceAndDiscount">
+          <p class="product__price"></p>
+          <p class="product__discount"></p>
+        </div>
+        <p class="product__oldPrice"></p>
+
+        <div class="product__numberAndCheckout">
+          <div class="product__howMany">
+            <button class="product__decreaseBtn howMany-btn">-</button>
+            <span class="product__number">1</span>
+            <button class="product__increaseBtn howMany-btn">+</button>
+          </div>
+          <button class="product__checkoutBtn">
+            <img
+              src="./images/icon-cart.svg"
+              alt="cart icon"
+              class="product__cartIcon"
+            />Add to cart
+          </button>
+        </div>
+      </section>
+    </main>
     <script src="./js/mobileNav.js" defer></script>
     <script src="./js/cart.js" defer></script>
+    <script type="module" src="./js/displayProduct.js" defer></script>
   </body>
 </html>

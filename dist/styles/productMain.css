@@ -1,0 +1,216 @@
+.product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1110px;
+  margin: auto;
+  padding: 60px 40px;
+}
+
+.product__imagesGridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 50%;
+  min-height: 450px;
+}
+.product__fullImage {
+  width: 450px;
+  height: 450px;
+  grid-column: 1/5;
+  border-radius: 10px;
+}
+.product__thumbnailBtn {
+  cursor: pointer;
+}
+.product__thumbnail {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  outline: solid 4px transparent;
+  transition: outline 300ms ease-in-out, filter 300ms ease-in-out;
+}
+.product__thumbnailBtn:hover {
+  filter: brightness(1.05);
+}
+.product__thumbnailBtn.active-thumbnail .product__thumbnail {
+  outline: solid 4px hsl(26, 100%, 55%);
+  filter: brightness(1.05);
+}
+.product__detailsContainer {
+  width: 55%;
+  margin-left: 80px;
+  padding: 20px;
+  min-height: 400px;
+}
+
+.product__company {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: hsl(26, 100%, 55%);
+  margin-bottom: 15px;
+}
+.product__name {
+  font-size: 3rem;
+  line-height: 50px;
+  font-weight: 700;
+  color: #1b1c20;
+  min-height: 100px;
+}
+
+.product__description {
+  color: #909195;
+  margin-top: 30px;
+  min-height: 70px;
+  min-height: 50px;
+}
+.product__priceAndDiscount {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.product__price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1b1c20;
+}
+
+.product__discount {
+  color: hsl(26, 100%, 55%);
+  font-weight: 700;
+  padding: 5px;
+  background: hsl(26, 100%, 55%, 15%);
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.product__oldPrice {
+  text-decoration: line-through;
+  font-weight: 700;
+  color: silver;
+  margin-top: 7px;
+}
+.product__numberAndCheckout {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.product__howMany {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: hsl(223, 64%, 98%);
+  padding: 10px;
+  border-radius: 10px;
+}
+.howMany-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(26, 100%, 55%);
+  padding: 20px;
+  transition: background 300ms ease-in-out;
+}
+.howMany-btn:hover {
+  background: hsl(233, 31%, 94%);
+  border-radius: 5px;
+}
+.product__number {
+  margin: 0 20px;
+  font-weight: 700;
+}
+.product__checkoutBtn {
+  width: 62%;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: hsl(26, 100%, 55%);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0px 5px 15px hsl(26, 100%, 55%, 35%);
+  transition: background 300ms ease-in-out;
+}
+.product__checkoutBtn:hover {
+  background: hsl(26, 100%, 67%);
+}
+.product__cartIcon {
+  margin-right: 10px;
+  filter: brightness(3);
+}
+
+@media screen and (max-width: 1110px) {
+  .product {
+    flex-direction: column;
+  }
+  .product__imagesGridContainer {
+    width: 70%;
+  }
+  .product__fullImage {
+    width: 100%;
+    height: auto;
+  }
+  .product__thumbnail {
+    width: 100%;
+    height: auto;
+  }
+  .product__detailsContainer {
+    width: 70%;
+    margin: 0;
+    padding: 60px 0;
+  }
+  .product__company {
+    min-height: 20px;
+  }
+  .product__name {
+    min-height: 100px;
+  }
+  .product__description {
+    min-height: 70px;
+  }
+  .product__priceAndDiscount {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    min-height: 40px;
+  }
+  .product__oldPrice {
+    min-height: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .product {
+    padding: 20px;
+  }
+  .product__imagesGridContainer {
+    width: 100%;
+    gap: 15px;
+  }
+  .product__detailsContainer {
+    width: 100%;
+  }
+
+  .product__numberAndCheckout {
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .product__checkoutBtn {
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .product__imagesGridContainer {
+    min-height: 350px;
+    gap: 10px;
+  }
+}
