@@ -50,7 +50,7 @@ function appendImagesContainer(name: string, images: imagesInterface[]): void {
 
   function displayNewFullImage(id): void {
     const thumbnailBtns = document.querySelectorAll(".product__thumbnailBtn");
-    fullImage.src = `../dist/images/${images[id].fullImage}`;
+    fullImage.src = `images/${images[id].fullImage}`;
     thumbnailBtns.forEach((btn, index) => {
       if (btn.classList.contains("active-thumbnail")) {
         btn.classList.remove("active-thumbnail");

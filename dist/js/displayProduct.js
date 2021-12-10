@@ -82,7 +82,7 @@ function appendImagesContainer(name, images) {
     appendThumbnails();
     function displayNewFullImage(id) {
         var thumbnailBtns = document.querySelectorAll(".product__thumbnailBtn");
-        fullImage.src = "../dist/images/" + images[id].fullImage;
+        fullImage.src = "images/" + images[id].fullImage;
         thumbnailBtns.forEach(function (btn, index) {
             if (btn.classList.contains("active-thumbnail")) {
                 btn.classList.remove("active-thumbnail");
