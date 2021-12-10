@@ -19,7 +19,7 @@ function appendImagesContainer(name: string, images: imagesInterface[]): void {
   const fullImage = document.createElement("img") as HTMLImageElement;
   fullImage.width = 450;
   fullImage.height = 450;
-  fullImage.src = `../dist/images/${images[0].fullImage}`;
+  fullImage.src = `images/${images[0].fullImage}`;
 
   fullImage.classList.add("product__fullImage");
   grid.appendChild(fullImage);

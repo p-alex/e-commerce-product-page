@@ -57,7 +57,7 @@ function appendImagesContainer(name, images) {
     var fullImage = document.createElement("img");
     fullImage.width = 450;
     fullImage.height = 450;
-    fullImage.src = "../dist/images/" + images[0].fullImage;
+    fullImage.src = "images/" + images[0].fullImage;
     fullImage.classList.add("product__fullImage");
     grid.appendChild(fullImage);
     // Appending the thumbnails
