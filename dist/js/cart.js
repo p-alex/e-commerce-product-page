@@ -1,48 +1,77 @@
-// Cart toggles
-var cartToggle = document.querySelector(".nav__cart");
-var mobileCartToggle = document.querySelector(".mobileNav__cart");
-// Nav cart preview divs for desktop and mobile nav
-var navCartPreview = document.querySelector(".nav__cartPreview");
-var mobileNavCartPreview = document.querySelector(".mobileNav__cartPreview");
-// Adding html to desktop and mobile nav
-navCartPreview.innerHTML = "\n    <p class=\"nav__cartPreviewTitle\">Cart</p>\n    <ul class=\"nav__cartPreviewList\"></ul>\n";
-mobileNavCartPreview.innerHTML = "\n    <p class=\"mobileNav__cartPreviewTitle\">Cart</p>\n    <ul class=\"mobileNav__cartPreviewList\"></ul>\n";
-// Cart lists for desktop and mobile cart previews
-var navCartList = document.querySelector(".nav__cartPreviewList");
-var mobileNavCartList = document.querySelector(".mobileNav__cartPreviewList");
-function toggleCart(options) {
-    var element = options.element, type = options.type;
-    if (element.classList.contains(type + "-cart-preview-active")) {
-        element.classList.remove(type + "-cart-preview-active");
-        return;
-    }
-    element.classList.add(type + "-cart-preview-active");
+const productList = document.querySelector(".nav__cartProductsList");
+export function cartMain() {
+    checkIfCartIsEmpty();
 }
-cartToggle.addEventListener("click", function () {
-    return toggleCart({ element: navCartPreview, type: "desktop" });
-});
-mobileCartToggle.addEventListener("click", function () {
-    return toggleCart({ element: mobileNavCartPreview, type: "mobile" });
-});
-function checkForProducts(options) {
-    var element = options.element, type = options.type;
-    var totalProductsInCart = navCartList.querySelectorAll(".nav__cart__preview__list__product").length;
-    var noProductsMessage;
-    if (totalProductsInCart === 0) {
-        appendNoProductsPragraph(element, type);
+function checkIfCartIsEmpty() {
+    var _a;
+    const products = document.querySelectorAll(".nav__cartProduct");
+    if (products.length === 0) {
+        const noProductsMessage = document.createElement("p");
+        noProductsMessage.classList.add("nav__cartNoProductsMessage");
+        noProductsMessage.innerText = "Your cart is empty";
+        productList.appendChild(noProductsMessage);
     }
     else {
-        navCartList.removeChild(noProductsMessage);
-        mobileNavCartList.removeChild(noProductsMessage);
-    }
-    function appendNoProductsPragraph(element, type) {
-        noProductsMessage = document.createElement("p");
-        noProductsMessage.innerText = "No products in cart";
-        noProductsMessage.classList.add(type + "__cartPreviewNoProducts");
-        element.appendChild(noProductsMessage);
+        (_a = productList === null || productList === void 0 ? void 0 : productList.querySelector(".nav__cartNoProductsMessage")) === null || _a === void 0 ? void 0 : _a.remove();
     }
 }
-checkForProducts({ element: navCartList, type: "nav" });
-checkForProducts({ element: mobileNavCartList, type: "mobileNav" });
-function addProductToCart() { }
-function removeProductFromCart() { }
+export function addProductToCart(product) {
+    const { imageURL, name, price, amount } = product;
+    productList.innerHTML += `
+  <li class="nav__cartProduct">
+  <img
+    src="${imageURL}"
+    alt=""
+    width="60"
+    height="60"
+    class="nav__cartProductImage"
+  />
+  <div class="nav__cartProductNameAndPrice">
+    <p
+      class="nav__cartProductName"
+      title=${name}
+    >
+    ${name}
+    </p>
+    <p class="nav__cartProductPrice">
+      <span class="nav__cartProductPrice">$${price}</span> x
+      <span class="nav__cartProductAmount">${amount}</span>
+      <span class="nav__cartProductTotalPrice">$${price * amount}</span>
+    </p>
+  </div>
+  <button class="nav__cartProductDeleteBtn">
+    <img src="./images/icon-delete.svg" />
+  </button>
+</li>
+  `;
+    //Apply event listener to delete btn
+    productList.querySelectorAll(".nav__cartProductDeleteBtn").forEach((btn) => {
+        btn.addEventListener("click", removeProductFromCart);
+    });
+    checkIfCartIsEmpty();
+    howManyProductsInCart();
+}
+function removeProductFromCart(event) {
+    event.currentTarget.parentNode.remove();
+    checkIfCartIsEmpty();
+    howManyProductsInCart();
+}
+export function toggleCart() {
+    const cartPreview = document.querySelector(".nav__cartPreview");
+    if (cartPreview.classList.contains("cart-active")) {
+        cartPreview.classList.remove("cart-active");
+        return;
+    }
+    cartPreview.classList.add("cart-active");
+}
+export function howManyProductsInCart() {
+    const products = productList.querySelectorAll(".nav__cartProduct");
+    const displayNumberOnCartIcon = document.querySelector(".numberOfProductsInCart");
+    let total = 0;
+    products.forEach((product) => {
+        const amount = product.querySelector(".nav__cartProductAmount");
+        total += parseInt(amount.innerText);
+    });
+    displayNumberOnCartIcon.innerText = total.toString();
+    return total;
+}
