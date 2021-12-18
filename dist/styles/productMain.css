@@ -6,7 +6,6 @@
   margin: auto;
   padding: 60px 40px;
 }
-
 .product__imagesGridContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -43,7 +42,6 @@
   padding: 20px;
   min-height: 400px;
 }
-
 .product__company {
   font-weight: 700;
   text-transform: uppercase;
@@ -57,7 +55,6 @@
   color: #1b1c20;
   min-height: 100px;
 }
-
 .product__description {
   color: #909195;
   margin-top: 30px;
@@ -69,13 +66,11 @@
   align-items: center;
   margin-top: 15px;
 }
-
 .product__price {
   font-size: 2rem;
   font-weight: 700;
   color: #1b1c20;
 }
-
 .product__discount {
   color: hsl(26, 100%, 55%);
   font-weight: 700;
@@ -84,19 +79,19 @@
   border-radius: 5px;
   margin-left: 15px;
 }
-
 .product__oldPrice {
   text-decoration: line-through;
   font-weight: 700;
   color: silver;
-  margin-top: 7px;
+  font-size: 1.2rem;
+  margin-left: 15px;
 }
-.product__numberAndCheckout {
+.product__amountAndCheckout {
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
 }
-.product__howMany {
+.product__amount {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -104,7 +99,7 @@
   padding: 10px;
   border-radius: 10px;
 }
-.howMany-btn {
+.amount-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,13 +111,18 @@
   padding: 20px;
   transition: background 300ms ease-in-out;
 }
-.howMany-btn:hover {
+.amount-btn:hover {
   background: hsl(233, 31%, 94%);
   border-radius: 5px;
 }
-.product__number {
+.product__amountValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 20px;
   font-weight: 700;
+  width: 25px;
+  height: 25px;
 }
 .product__checkoutBtn {
   width: 62%;
@@ -144,7 +144,14 @@
   margin-right: 10px;
   filter: brightness(3);
 }
-
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media screen and (max-width: 1110px) {
   .product {
     flex-direction: column;
@@ -181,10 +188,14 @@
     min-height: 40px;
   }
   .product__oldPrice {
-    min-height: 20px;
+    min-height: 20;
+    text-align: right;
+    flex-grow: 1;
+    text-decoration: line-through;
+    font-weight: 700;
+    color: silver;
   }
 }
-
 @media screen and (max-width: 700px) {
   .product {
     padding: 20px;
@@ -197,7 +208,7 @@
     width: 100%;
   }
 
-  .product__numberAndCheckout {
+  .product__amountAndCheckout {
     justify-content: space-between;
     flex-direction: column;
   }
@@ -207,7 +218,6 @@
     margin-top: 10px;
   }
 }
-
 @media screen and (max-width: 450px) {
   .product__imagesGridContainer {
     min-height: 350px;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A challenge by Frontend Mentor" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,58 +13,17 @@
     />
     <link rel="stylesheet" href="./styles/globals.css" />
     <link rel="stylesheet" href="./styles/nav.css" />
-    <link rel="stylesheet" href="./styles/mobileNav.css" />
     <link rel="stylesheet" href="./styles/cart.css" />
     <link rel="stylesheet" href="./styles/productMain.css" />
     <title>Ecommerce product page</title>
   </head>
   <body>
-    <!-- MOBILE NAVIGATION -->
-    <nav class="mobileNav">
-      <div class="mobileNav__container">
-        <button aria-label="toggle menu" class="mobileNav__hamburger">
-          <img src="./images/icon-menu.svg" alt="" />
-        </button>
-        <div class="mobileNav__logo">
-          <img src="./images/logo.svg" />
-        </div>
-        <ul class="mobileNav__links">
-          <div
-            tabindex="0"
-            class="mobileNav__topFocusTrap"
-            onfocus="redirectFocus('bottom')"
-          ></div>
-          <button aria-label="close menu" class="mobileNav__close">
-            <img src="./images/icon-close.svg" alt="" />
-          </button>
-          <li><a href="#">Collections</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">About</a></li>
-          <li>
-            <a href="#" class="mobileNav__lastFocusableElement">Contact</a>
-          </li>
-          <div
-            tabindex="0"
-            class="mobileNav__bottomFocusTrap"
-            onfocus="redirectFocus('top')"
-          ></div>
-        </ul>
-        <div class="mobileNav__backdrop"></div>
-      </div>
-      <div class="mobileNav__container">
-        <button class="mobileNav__cart" aria-label="shopping cart toggle">
-          <img src="./images/icon-cart.svg" alt="" />
-        </button>
-        <div class="mobileNav__cartPreview"></div>
-        <div tabindex="0" class="mobileNav__avatar">
-          <img src="images/image-avatar.png" alt="" />
-        </div>
-      </div>
-    </nav>
     <!-- DESKTOP NAVIGATION -->
     <nav class="nav">
       <div class="nav__container">
+        <button aria-label="toggle menu" class="nav__mobileHamburgerBtn">
+          <img src="./images/icon-menu.svg" alt="" />
+        </button>
         <div class="nav__logo">
           <img src="./images/logo.svg" />
         </div>
@@ -74,18 +34,36 @@
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
+        <ul class="nav__mobileLinks">
+          <div class="nav__mobileLinksTopFocusTrap" tabindex="0"></div>
+          <button aria-label="close menu" class="nav__mobileLinksCloseBtn">
+            <img src="./images/icon-close.svg" alt="" />
+          </button>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li>
+            <a href="#" class="nav__lastFocusableElement">Contact</a>
+          </li>
+          <div class="nav__mobileLinksBottomFocusTrap" tabindex="0"></div>
+        </ul>
+        <div class="nav__mobileBackdrop" tabindex="0"></div>
       </div>
       <div class="nav__container">
-        <button class="nav__cart" aria-label="shopping cart toggle">
+        <button class="nav__cartToggle" aria-label="shopping cart toggle">
           <img src="./images/icon-cart.svg" alt="" />
+          <div class="numberOfProductsInCart">0</div>
         </button>
-        <div class="nav__cartPreview"></div>
+        <div class="nav__cartPreview">
+          <p class="nav__cartPreviewTitle">Cart</p>
+          <ul class="nav__cartProductsList"></ul>
+        </div>
         <div class="nav__avatar" tabindex="0">
           <img src="images/image-avatar.png" alt="" />
         </div>
       </div>
     </nav>
-
     <!-- PRODUCT -->
     <main class="product">
       <section class="product__imagesGridContainer"></section>
@@ -96,14 +74,14 @@
         <div class="product__priceAndDiscount">
           <p class="product__price"></p>
           <p class="product__discount"></p>
+          <p class="product__oldPrice"></p>
         </div>
-        <p class="product__oldPrice"></p>
 
-        <div class="product__numberAndCheckout">
-          <div class="product__howMany">
-            <button class="product__decreaseBtn howMany-btn">-</button>
-            <span class="product__number">1</span>
-            <button class="product__increaseBtn howMany-btn">+</button>
+        <div class="product__amountAndCheckout">
+          <div class="product__amount">
+            <button class="product__decrementBtn amount-btn">-</button>
+            <span class="product__amountValue">1</span>
+            <button class="product__incrementBtn amount-btn">+</button>
           </div>
           <button class="product__checkoutBtn">
             <img
@@ -115,8 +93,6 @@
         </div>
       </section>
     </main>
-    <script src="./js/mobileNav.js" defer></script>
-    <script src="./js/cart.js" defer></script>
-    <script type="module" src="./js/displayProduct.js" defer></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
