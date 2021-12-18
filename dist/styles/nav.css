@@ -10,6 +10,9 @@
   display: flex;
   align-items: center;
 }
+.nav__mobileHamburgerBtn {
+  display: none;
+}
 .nav__logo {
   position: relative;
   width: 138px;
@@ -37,14 +40,21 @@
 .nav__links li a:hover {
   border-bottom: solid 5px hsl(26, 100%, 55%);
 }
-.nav__cart {
+.nav__mobileLinks {
+  display: none;
+}
+.nav__mobileLinks.mobileNav-active {
+  display: none;
+}
+.nav__cartToggle {
+  position: relative;
   background: none;
   border: none;
   margin-right: 40px;
   opacity: 0.7;
   transition: opacity 300ms ease-in-out;
 }
-.nav__cart:hover {
+.nav__cartToggle:hover {
   opacity: 1;
   cursor: pointer;
 }
@@ -69,7 +79,92 @@
   }
 }
 @media screen and (max-width: 700px) {
-  .nav {
+  .nav__links {
     display: none;
+  }
+  .nav__mobileLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-110%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    width: 60%;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: 700;
+    list-style-type: none;
+    background-color: white;
+    padding: 10px 20px;
+    opacity: 0;
+    z-index: 3;
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  }
+  .nav__mobileLinks.mobileNav-active {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .nav__mobileLinks li {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+  .nav__mobileLinks li a {
+    display: block;
+    text-decoration: none;
+    margin-right: 0;
+    padding: 10px 0px;
+    border: none;
+    color: black;
+  }
+  .nav__mobileBackdrop {
+    display: none;
+    opacity: 0;
+    animation-name: backdropFade;
+    animation-duration: 300ms;
+  }
+  .nav__mobileBackdrop.mobileNav-active {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+  }
+  .nav__mobileLinksCloseBtn {
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .nav__mobileLinksCloseBtn img {
+    width: 100%;
+  }
+  .nav__mobileHamburgerBtn {
+    display: block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+    border-bottom: solid 5px transparent;
+  }
+  .nav__mobileHamburgerBtn img {
+    width: 100%;
+  }
+}
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
