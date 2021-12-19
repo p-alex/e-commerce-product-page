@@ -14,11 +14,9 @@ export function checkIfCartIsEmpty() {
         cartCheckoutBtn === null || cartCheckoutBtn === void 0 ? void 0 : cartCheckoutBtn.remove();
     }
     else {
-        console.log("ghere");
         //remove noProduct message
         (_a = productList === null || productList === void 0 ? void 0 : productList.querySelector(".nav__cartNoProductsMessage")) === null || _a === void 0 ? void 0 : _a.remove();
         const isCheckoutBtn = document.querySelector(".nav__cartCheckoutBtn");
-        console.log("ghere");
         if (!isCheckoutBtn) {
             //adding total price to pay
             const totalPriceToPay = document.createElement("p");
@@ -96,24 +94,25 @@ export function howManyProductsInCart() {
     return total;
 }
 function calculateTotalPriceToPay() {
-    const totalPriceToPayParagraph = document.querySelector(".nav__cartTotalPriceToPay");
-    const products = document.querySelectorAll(".nav__cartProduct");
-    let total = 0;
-    products.forEach((product) => {
-        const price = product.querySelector(".nav__cartProductPrice");
-        const amount = product.querySelector(".nav__cartProductAmount");
-        total +=
-            parseInt(price.innerText.slice(1, price.innerText.length)) *
-                parseInt(amount.innerText);
-    });
-    totalPriceToPayParagraph.innerText = `Total: $${total}`;
+    const totalPriceToPayParagraph = document === null || document === void 0 ? void 0 : document.querySelector(".nav__cartTotalPriceToPay");
+    if (totalPriceToPayParagraph) {
+        const products = document.querySelectorAll(".nav__cartProduct");
+        let total = 0;
+        products.forEach((product) => {
+            const price = product.querySelector(".nav__cartProductPrice");
+            const amount = product.querySelector(".nav__cartProductAmount");
+            total +=
+                parseInt(price.innerText.slice(1, price.innerText.length)) *
+                    parseInt(amount.innerText);
+        });
+        totalPriceToPayParagraph.innerText = `Total: $${total}`;
+    }
 }
 function removeAllProductsFromCart() {
     productList.innerHTML = "";
+    checkIfCartIsEmpty();
+    howManyProductsInCart();
 }
 function handleCheckout() {
     removeAllProductsFromCart();
-    checkIfCartIsEmpty();
-    howManyProductsInCart();
-    calculateTotalPriceToPay();
 }

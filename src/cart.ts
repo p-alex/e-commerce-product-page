@@ -24,15 +24,14 @@ export function checkIfCartIsEmpty(): void {
     noProductsMessage.classList.add("nav__cartNoProductsMessage");
     noProductsMessage.innerText = "Your cart is empty";
     productList.appendChild(noProductsMessage);
+
     totalPriceToPay?.remove();
     cartCheckoutBtn?.remove();
   } else {
-    console.log("ghere");
     //remove noProduct message
     productList?.querySelector(".nav__cartNoProductsMessage")?.remove();
 
     const isCheckoutBtn = document.querySelector(".nav__cartCheckoutBtn");
-    console.log("ghere");
     if (!isCheckoutBtn) {
       //adding total price to pay
       const totalPriceToPay = document.createElement("p");
@@ -100,7 +99,6 @@ export function addProductToCart(product: cartProduct): void {
 
 function removeProductFromCart(event): void {
   event.currentTarget.parentNode.remove();
-
   checkIfCartIsEmpty();
   howManyProductsInCart();
   calculateTotalPriceToPay();
@@ -143,32 +141,33 @@ export function howManyProductsInCart(): number {
 }
 
 function calculateTotalPriceToPay(): void {
-  const totalPriceToPayParagraph = document.querySelector(
+  const totalPriceToPayParagraph = document?.querySelector(
     ".nav__cartTotalPriceToPay"
   ) as HTMLParagraphElement;
-  const products: NodeList = document.querySelectorAll(".nav__cartProduct");
-  let total = 0;
-  products.forEach((product: Element) => {
-    const price = product.querySelector(
-      ".nav__cartProductPrice"
-    ) as HTMLSpanElement;
-    const amount = product.querySelector(
-      ".nav__cartProductAmount"
-    ) as HTMLSpanElement;
-    total +=
-      parseInt(price.innerText.slice(1, price.innerText.length)) *
-      parseInt(amount.innerText);
-  });
-  totalPriceToPayParagraph.innerText = `Total: $${total}`;
+  if (totalPriceToPayParagraph) {
+    const products: NodeList = document.querySelectorAll(".nav__cartProduct");
+    let total = 0;
+    products.forEach((product: Element) => {
+      const price = product.querySelector(
+        ".nav__cartProductPrice"
+      ) as HTMLSpanElement;
+      const amount = product.querySelector(
+        ".nav__cartProductAmount"
+      ) as HTMLSpanElement;
+      total +=
+        parseInt(price.innerText.slice(1, price.innerText.length)) *
+        parseInt(amount.innerText);
+    });
+    totalPriceToPayParagraph.innerText = `Total: $${total}`;
+  }
 }
 
 function removeAllProductsFromCart() {
   productList.innerHTML = "";
+  checkIfCartIsEmpty();
+  howManyProductsInCart();
 }
 
 function handleCheckout() {
   removeAllProductsFromCart();
-  checkIfCartIsEmpty();
-  howManyProductsInCart();
-  calculateTotalPriceToPay();
 }
