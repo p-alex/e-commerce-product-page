@@ -11,7 +11,7 @@ import { insertProductDetails } from "./insertProductDetails.js";
 import { insertImageSlider } from "./insertImageSlider.js";
 import { navFunctionality } from "./nav.js";
 import { amountCounter } from "./amountCounter.js";
-import { cartMain } from "./cart.js";
+import { checkIfCartIsEmpty } from "./cart.js";
 // fetching data about the product
 function getProduct() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -23,7 +23,7 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         let { company, name, description, price, discount, images, } = yield getProduct();
         navFunctionality();
-        cartMain();
+        checkIfCartIsEmpty();
         insertImageSlider(name, images);
         insertProductDetails({ company, name, description, price, discount, images });
         amountCounter();

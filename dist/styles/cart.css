@@ -84,13 +84,35 @@
   text-overflow: ellipsis;
 }
 
-.nav__cartProductPrice {
+.nav__cartProductPriceContainer {
   margin-top: 5px;
 }
 
 .nav__cartProductTotalPrice {
   font-weight: 700;
   color: black;
+}
+
+.nav__cartTotalPriceToPay {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.nav__cartCheckoutBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 15px 40px;
+  border-radius: 10px;
+  background: hsl(26, 100%, 55%);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0px 5px 15px hsl(26, 100%, 55%, 35%);
+  transition: background 300ms ease-in-out;
+}
+
+.nav__cartCheckoutBtn:hover {
+  background: hsl(26, 100%, 67%);
 }
 
 @keyframes previewCartFadeIn {
