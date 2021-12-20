@@ -3,17 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Kumbh Sans", sans-serif;
-}
-.design {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../../design/desktop-design.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
+  border: solid red 1px;
 }
 button {
   background: none;
