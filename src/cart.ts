@@ -1,3 +1,5 @@
+import { resetCounter } from "./amountCounter.js";
+
 const cartPreview = document.querySelector(
   ".nav__cartPreview"
 ) as HTMLDivElement;
@@ -6,6 +8,12 @@ const productList = document.querySelector(
   ".nav__cartProductsList"
 ) as HTMLUListElement;
 
+const productDiscount = document.querySelector(
+  ".product__discount"
+) as HTMLParagraphElement;
+
+// if cart is empty, then add no products message and remove
+// total price and cart checkout btn.
 export function checkIfCartIsEmpty(): void {
   const products: NodeList = document.querySelectorAll(".nav__cartProduct");
   if (products.length === 0) {
@@ -53,11 +61,14 @@ export interface cartProduct {
   imageURL: string;
   name: string;
   price: number;
+  discount: number;
   amount: number;
 }
 
 export function addProductToCart(product: cartProduct): void {
-  const { imageURL, name, price, amount } = product;
+  const { imageURL, name, price, amount, discount } = product;
+
+  let discountPrice = (price * discount) / 100;
 
   productList.innerHTML += `
   <li class="nav__cartProduct">
@@ -76,9 +87,13 @@ export function addProductToCart(product: cartProduct): void {
     ${name}
     </p>
     <div class="nav__cartProductPriceContainer">
-      <span class="nav__cartProductPrice">$${price}</span> x
+      <span class="nav__cartProductPrice">$${
+        discount ? discountPrice : price
+      }</span> x
       <span class="nav__cartProductAmount">${amount}</span>
-      <span class="nav__cartProductTotalPrice">$${price * amount}</span>
+      <span class="nav__cartProductTotalPrice">$${
+        discount ? discountPrice * amount : price * amount
+      }</span>
     </div>
   </div>
   <button class="nav__cartProductDeleteBtn">
@@ -95,6 +110,7 @@ export function addProductToCart(product: cartProduct): void {
   checkIfCartIsEmpty();
   howManyProductsInCart();
   calculateTotalPriceToPay();
+  resetCounter();
 }
 
 function removeProductFromCart(event): void {
@@ -154,9 +170,12 @@ function calculateTotalPriceToPay(): void {
       const amount = product.querySelector(
         ".nav__cartProductAmount"
       ) as HTMLSpanElement;
-      total +=
-        parseInt(price.innerText.slice(1, price.innerText.length)) *
-        parseInt(amount.innerText);
+      let priceValue = parseInt(
+        price.innerText.slice(1, price.innerText.length)
+      );
+      let amountValue = parseInt(amount.innerText);
+      let discountValue = parseInt(productDiscount.innerText);
+      total += priceValue * amountValue;
     });
     totalPriceToPayParagraph.innerText = `Total: $${total}`;
   }

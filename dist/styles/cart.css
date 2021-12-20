@@ -128,7 +128,7 @@
 
 @media screen and (max-width: 700px) {
   .nav__cartPreview {
-    top: 72px;
+    top: 82px;
     width: calc(100% - 40px);
     left: 0;
     right: 0;

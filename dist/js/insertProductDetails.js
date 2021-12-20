@@ -15,6 +15,7 @@ export function insertProductDetails(details) {
         name,
         price,
         amount: currentAmount(),
+        discount,
     }));
 }
 function calculateDiscount(currentPrice, discount) {

@@ -31,6 +31,7 @@ export function insertProductDetails(details: detailsInterface): void {
       name,
       price,
       amount: currentAmount(),
+      discount,
     })
   );
 }

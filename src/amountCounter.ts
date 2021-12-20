@@ -39,3 +39,7 @@ export function amountCounter() {
 export function currentAmount() {
   return parseInt(totalNumber.innerText);
 }
+
+export function resetCounter() {
+  totalNumber.innerText = "1";
+}
