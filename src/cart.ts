@@ -121,16 +121,15 @@ function removeProductFromCart(event): void {
 }
 
 export function toggleCart() {
-  const cartPreview = document.querySelector(
-    ".nav__cartPreview"
-  ) as HTMLDivElement;
-
   if (cartPreview.classList.contains("cart-active")) {
     cartPreview.classList.remove("cart-active");
     return;
   }
-
   cartPreview.classList.add("cart-active");
+}
+
+function toggleCartOff() {
+  cartPreview.classList.remove("cart-active");
 }
 
 export function howManyProductsInCart(): number {
@@ -181,12 +180,26 @@ function calculateTotalPriceToPay(): void {
   }
 }
 
-function removeAllProductsFromCart() {
+function removeAllProductsFromCart(): void {
   productList.innerHTML = "";
   checkIfCartIsEmpty();
   howManyProductsInCart();
 }
 
-function handleCheckout() {
+function handleCheckout(): void {
   removeAllProductsFromCart();
+}
+
+document.addEventListener("click", (event) =>
+  toggleCartOffWhenClickOutside(event)
+);
+
+function toggleCartOffWhenClickOutside(event): void {
+  if (
+    !event.target.closest(".nav__cartPreview") &&
+    !event.target.closest(".nav__cartToggle") &&
+    !event.target.closest(".nav__cartCheckoutBtn")
+  ) {
+    toggleCartOff();
+  }
 }

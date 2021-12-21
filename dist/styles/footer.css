@@ -1,0 +1,12 @@
+.footer {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.footer p {
+  color: #909195;
+}
+.footer a {
+  color: hsl(26, 100%, 55%);
+}
