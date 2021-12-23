@@ -60,7 +60,7 @@ export function addProductToCart(product) {
       <span class="nav__cartProductTotalPrice">$${discount ? discountPrice * amount : price * amount}</span>
     </div>
   </div>
-  <button class="nav__cartProductDeleteBtn" id="productDeleteBtn">
+  <button class="nav__cartProductDeleteBtn">
     <img src="./images/icon-delete.svg" />
   </button>
 </li>

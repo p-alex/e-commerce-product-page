@@ -194,6 +194,9 @@
   .product__description {
     min-height: 70px;
   }
+  .product__priceDiscountOldPrice {
+    flex-direction: row;
+  }
   .product__priceAndDiscount {
     display: flex;
     align-items: center;
@@ -219,9 +222,6 @@
   }
   .product__detailsContainer {
     width: 100%;
-  }
-  .product__priceDiscountOldPrice {
-    flex-direction: row;
   }
   .product__oldPrice {
     margin-top: 0px;

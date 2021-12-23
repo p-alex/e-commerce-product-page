@@ -96,7 +96,7 @@ export function addProductToCart(product: cartProduct): void {
       }</span>
     </div>
   </div>
-  <button class="nav__cartProductDeleteBtn" id="productDeleteBtn">
+  <button class="nav__cartProductDeleteBtn">
     <img src="./images/icon-delete.svg" />
   </button>
 </li>
