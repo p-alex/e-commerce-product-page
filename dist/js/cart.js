@@ -125,11 +125,3 @@ function removeAllProductsFromCart() {
 function handleCheckout() {
     removeAllProductsFromCart();
 }
-document.addEventListener("click", (event) => toggleCartOffWhenClickOutside(event));
-function toggleCartOffWhenClickOutside(event) {
-    if (!event.target.closest(".nav__cartPreview") &&
-        !event.target.closest(".nav__cartToggle") &&
-        !event.target.closest(".nav__cartCheckoutBtn")) {
-        toggleCartOff();
-    }
-}

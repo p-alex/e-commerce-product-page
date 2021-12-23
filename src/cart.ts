@@ -189,17 +189,3 @@ function removeAllProductsFromCart(): void {
 function handleCheckout(): void {
   removeAllProductsFromCart();
 }
-
-document.addEventListener("click", (event) =>
-  toggleCartOffWhenClickOutside(event)
-);
-
-function toggleCartOffWhenClickOutside(event): void {
-  if (
-    !event.target.closest(".nav__cartPreview") &&
-    !event.target.closest(".nav__cartToggle") &&
-    !event.target.closest(".nav__cartCheckoutBtn")
-  ) {
-    toggleCartOff();
-  }
-}

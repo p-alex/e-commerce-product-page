@@ -25,7 +25,6 @@ function navFunctionality() {
 
   // TOGGLE MOBILE NAV LINKS
   hamburger.addEventListener("click", (): void => {
-    mobileNavContainer.style.display = "block";
     mobileCloseBtn.focus();
     mobileNavContainer.classList.add("mobileNav-active");
     mobileBackdrop.classList.add("mobileNav-active");
@@ -38,9 +37,6 @@ function navFunctionality() {
     hamburger.focus();
     mobileNavContainer.classList.remove("mobileNav-active");
     mobileBackdrop.classList.remove("mobileNav-active");
-    setTimeout(() => {
-      mobileNavContainer.style.display = "none";
-    }, 300);
   }
 
   // FOCUS TRAP
