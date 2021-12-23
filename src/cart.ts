@@ -96,7 +96,7 @@ export function addProductToCart(product: cartProduct): void {
       }</span>
     </div>
   </div>
-  <button class="nav__cartProductDeleteBtn">
+  <button class="nav__cartProductDeleteBtn" id="productDeleteBtn">
     <img src="./images/icon-delete.svg" />
   </button>
 </li>
@@ -188,4 +188,19 @@ function removeAllProductsFromCart(): void {
 
 function handleCheckout(): void {
   removeAllProductsFromCart();
+}
+
+document.addEventListener("click", (event) =>
+  toggleCartOffWhenClickOutside(event)
+);
+
+function toggleCartOffWhenClickOutside(event) {
+  if (
+    !event.target.closest(".nav__cartPreview") &&
+    !event.target.closest(".nav__cartToggle") &&
+    !event.target.closest(".nav__cartCheckoutBtn") &&
+    !event.target.closest(".nav__cartProductDeleteBtn")
+  ) {
+    toggleCartOff();
+  }
 }
