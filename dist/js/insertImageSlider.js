@@ -6,6 +6,7 @@ export function insertImageSlider(name, images) {
     fullImage.height = 450;
     fullImage.src = `images/${images[0].fullImage}`;
     fullImage.classList.add("product__fullImage");
+    fullImage.alt = `Product full image`;
     grid.appendChild(fullImage);
     appendThumbnails();
     // Appending the thumbnails
@@ -21,6 +22,7 @@ export function insertImageSlider(name, images) {
             thumbnail.width = 90;
             thumbnail.height = 90;
             thumbnail.classList.add("product__thumbnail");
+            thumbnail.alt = `Product thumbnail ${id}`;
             if (id === 0) {
                 thumbnailBtn.classList.add("active-thumbnail");
             }
