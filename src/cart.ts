@@ -173,7 +173,6 @@ function calculateTotalPriceToPay(): void {
         price.innerText.slice(1, price.innerText.length)
       );
       let amountValue = parseInt(amount.innerText);
-      let discountValue = parseInt(productDiscount.innerText);
       total += priceValue * amountValue;
     });
     totalPriceToPayParagraph.innerText = `Total: $${total}`;

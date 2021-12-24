@@ -111,7 +111,6 @@ function calculateTotalPriceToPay() {
             const amount = product.querySelector(".nav__cartProductAmount");
             let priceValue = parseInt(price.innerText.slice(1, price.innerText.length));
             let amountValue = parseInt(amount.innerText);
-            let discountValue = parseInt(productDiscount.innerText);
             total += priceValue * amountValue;
         });
         totalPriceToPayParagraph.innerText = `Total: $${total}`;
