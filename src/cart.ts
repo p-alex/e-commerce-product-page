@@ -1,4 +1,5 @@
 import { resetCounter } from "./amountCounter.js";
+import { cartBtn } from "./nav.js";
 
 const cartPreview = document.querySelector(
   ".nav__cartPreview"
@@ -7,10 +8,6 @@ const cartPreview = document.querySelector(
 const productList = document.querySelector(
   ".nav__cartProductsList"
 ) as HTMLUListElement;
-
-const productDiscount = document.querySelector(
-  ".product__discount"
-) as HTMLParagraphElement;
 
 // if cart is empty, then add no products message and remove
 // total price and cart checkout btn.
@@ -151,7 +148,10 @@ export function howManyProductsInCart(): number {
   });
 
   displayNumberOnCartIcon.innerText = total.toString();
-
+  cartBtn.setAttribute(
+    "aria-label",
+    `toggle shopping cart with ${total} products`
+  );
   return total;
 }
 

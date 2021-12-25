@@ -1,7 +1,7 @@
 import { resetCounter } from "./amountCounter.js";
+import { cartBtn } from "./nav.js";
 const cartPreview = document.querySelector(".nav__cartPreview");
 const productList = document.querySelector(".nav__cartProductsList");
-const productDiscount = document.querySelector(".product__discount");
 // if cart is empty, then add no products message and remove
 // total price and cart checkout btn.
 export function checkIfCartIsEmpty() {
@@ -99,6 +99,7 @@ export function howManyProductsInCart() {
         total += parseInt(amount.innerText);
     });
     displayNumberOnCartIcon.innerText = total.toString();
+    cartBtn.setAttribute("aria-label", `toggle shopping cart with ${total} products`);
     return total;
 }
 function calculateTotalPriceToPay() {

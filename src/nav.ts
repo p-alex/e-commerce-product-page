@@ -1,5 +1,9 @@
 import { toggleCart } from "./cart.js";
 
+export const cartBtn = document.querySelector(
+  ".nav__cartToggle"
+) as HTMLButtonElement;
+
 function navFunctionality() {
   const hamburger = document.querySelector(
     ".nav__mobileHamburgerBtn"
@@ -16,10 +20,6 @@ function navFunctionality() {
   const mobileBackdrop = document.querySelector(
     ".nav__mobileBackdrop"
   ) as HTMLDivElement;
-
-  const cartBtn = document.querySelector(
-    ".nav__cartToggle"
-  ) as HTMLButtonElement;
 
   cartBtn.addEventListener("click", toggleCart);
 

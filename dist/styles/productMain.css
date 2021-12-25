@@ -6,13 +6,7 @@
   margin: auto;
   padding: 90px 45px;
 }
-.product__imagesGridContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  width: 50%;
-  min-height: 450px;
-}
+
 .product__fullImagesSlider {
   position: relative;
   overflow: hidden;
@@ -41,15 +35,20 @@
 .product__fullImagesRow {
   position: relative;
   display: flex;
-  flex-shrink: 0;
+  width: 100%;
   border-radius: 10px;
   transition: transform 300ms ease-in-out;
 }
-.product__fullImagesRow img {
+.product__fullImageBtn {
   position: relative;
+  flex-shrink: 0;
   width: 100%;
   border-radius: 10px;
   cursor: pointer;
+}
+.product__fullImageBtn img {
+  max-width: 100%;
+  height: 100%;
 }
 .product__thumbnails {
   position: relative;

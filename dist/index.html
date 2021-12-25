@@ -28,15 +28,18 @@
     <!-- LIGHTBOX -->
     <div class="lightbox">
       <div class="lightbox__backdrop"></div>
-
+      <div class="lightbox__topFocusTrap" tabindex="0"></div>
       <div class="lightbox__slider">
-        <button class="lightbox__closeBtn">
+        <button class="lightbox__closeBtn" aria-label="Close lightbox">
           <img src="./images/icon-close.svg" alt="" />
         </button>
 
         <div class="lightbox__imagesContainer">
           <div class="lighbox__fullImagesContainer">
-            <button class="lightbox__sliderCtrl ctrl-left">
+            <button
+              class="lightbox__sliderCtrl ctrl-left"
+              aria-label="Lightbox previous slide"
+            >
               <img src="./images/icon-previous.svg" alt="" />
             </button>
 
@@ -44,12 +47,16 @@
               <div class="lightbox__fullImagesRow"></div>
             </div>
 
-            <button class="lightbox__sliderCtrl ctrl-right">
+            <button
+              class="lightbox__sliderCtrl ctrl-right"
+              aria-label="Lightbox next slide"
+            >
               <img src="./images/icon-next.svg" alt="" />
             </button>
           </div>
 
           <div class="lightbox__thumbnails"></div>
+          <div class="lightbox__bottomFocusTrap" tabindex="0"></div>
         </div>
       </div>
     </div>
@@ -94,7 +101,10 @@
       </div>
 
       <div class="nav__container">
-        <button class="nav__cartToggle" aria-label="shopping cart toggle">
+        <button
+          class="nav__cartToggle"
+          aria-label="toggle shopping cart with 0 products"
+        >
           <img src="./images/icon-cart.svg" alt="" />
           <div class="numberOfProductsInCart">0</div>
         </button>

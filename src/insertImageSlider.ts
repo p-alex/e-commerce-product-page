@@ -3,6 +3,7 @@ import { openLightbox } from "./lightbox.js";
 openLightbox;
 
 let currentSliderIndex = 0;
+export let currentFocusableFullImageBtn;
 
 export function insertImageSlider(
   name: string,
@@ -24,13 +25,21 @@ export function insertImageSlider(
   // Appending full images
   function appendFullImages() {
     images.forEach((image, index) => {
+      const button = document.createElement("button") as HTMLButtonElement;
+      button.setAttribute("aria-label", `${name} full image ${index + 1}`);
+      button.classList.add("product__fullImageBtn");
+      if (currentSliderIndex === index) button.setAttribute("tabindex", "0");
+      if (currentSliderIndex !== index) button.setAttribute("tabIndex", "-1");
       const fullImage = document.createElement("img") as HTMLImageElement;
       fullImage.src = `images/${image.fullImage}`;
       fullImage.classList.add("product__fullImage");
       fullImage.alt = `Product full image ${index}`;
 
-      fullImage.addEventListener("click", () => openLightbox(index));
-      fullImagesRow.appendChild(fullImage);
+      button.appendChild(fullImage);
+
+      button.addEventListener("click", () => openLightbox(index));
+
+      fullImagesRow.appendChild(button);
     });
   }
 
@@ -52,9 +61,10 @@ export function insertImageSlider(
         thumbnailBtn.classList.add("active-thumbnail");
       }
 
-      thumbnail.addEventListener("click", () => {
+      thumbnailBtn.addEventListener("click", () => {
         moveSlider(id);
         setCurrentActiveThumbnail(id);
+        makeCurrentFullImageBtnFocusable(id);
       });
 
       thumbnailBtn.appendChild(thumbnail);
@@ -70,11 +80,13 @@ export function insertImageSlider(
         if (currentSliderIndex - 1 >= 0) {
           moveSlider(currentSliderIndex - 1);
           setCurrentActiveThumbnail(currentSliderIndex);
+          makeCurrentFullImageBtnFocusable(currentSliderIndex);
         }
       } else {
         if (currentSliderIndex + 1 <= images.length - 1) {
           moveSlider(currentSliderIndex + 1);
           setCurrentActiveThumbnail(currentSliderIndex);
+          makeCurrentFullImageBtnFocusable(currentSliderIndex);
         }
       }
     });
@@ -83,6 +95,19 @@ export function insertImageSlider(
   function moveSlider(index: number): void {
     fullImagesRow.style.transform = `translateX(-${100 * index}%)`;
     currentSliderIndex = index;
+  }
+
+  function makeCurrentFullImageBtnFocusable(id) {
+    const fulImages = document.querySelectorAll(".product__fullImageBtn");
+    fulImages.forEach((fullImage, index) => {
+      if (index !== id) {
+        fullImage.setAttribute("tabIndex", "-1");
+      }
+      if (index === id) {
+        fullImage.setAttribute("tabIndex", "0");
+        currentFocusableFullImageBtn = fullImage;
+      }
+    });
   }
 
   function setCurrentActiveThumbnail(id: number): void {

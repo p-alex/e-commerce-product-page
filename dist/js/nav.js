@@ -1,10 +1,10 @@
 import { toggleCart } from "./cart.js";
+export const cartBtn = document.querySelector(".nav__cartToggle");
 function navFunctionality() {
     const hamburger = document.querySelector(".nav__mobileHamburgerBtn");
     const mobileNavContainer = document.querySelector(".nav__mobileLinks");
     const mobileCloseBtn = document.querySelector(".nav__mobileLinksCloseBtn");
     const mobileBackdrop = document.querySelector(".nav__mobileBackdrop");
-    const cartBtn = document.querySelector(".nav__cartToggle");
     cartBtn.addEventListener("click", toggleCart);
     // TOGGLE MOBILE NAV LINKS
     hamburger.addEventListener("click", () => {

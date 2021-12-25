@@ -1,3 +1,4 @@
+import { currentFocusableFullImageBtn } from "./insertImageSlider.js";
 import { imagesInterface } from "./interfaces/index";
 const lightbox = document.querySelector(".lightbox") as HTMLDivElement;
 
@@ -26,16 +27,26 @@ let activeImageIndex: number = 0;
 export function lightboxMain(images: imagesInterface[]): void {
   appendFullImagesToRow();
   appendThumbnails();
+  applyFocusTrap();
 
   ctrlLeft.addEventListener("click", () => {
-    if (activeImageIndex - 1 >= 0) activeImageIndex--;
+    //if (activeImageIndex - 1 >= 0) activeImageIndex--;
+    activeImageIndex--;
+    if (activeImageIndex < 0) {
+      activeImageIndex = images.length - 1;
+    }
+
     moveSlider(activeImageIndex);
     setActiveImageIndex(activeImageIndex);
     setActiveThumbnail();
   });
 
   ctrlRight.addEventListener("click", () => {
-    if (activeImageIndex + 1 <= images.length - 1) activeImageIndex++;
+    //if (activeImageIndex + 1 <= images.length - 1) activeImageIndex++;
+    activeImageIndex++;
+    if (activeImageIndex > images.length - 1) {
+      activeImageIndex = 0;
+    }
     moveSlider(activeImageIndex);
     setActiveImageIndex(activeImageIndex);
     setActiveThumbnail();
@@ -47,6 +58,7 @@ export function lightboxMain(images: imagesInterface[]): void {
       const img = document.createElement("img") as HTMLImageElement;
       img.src = `./images/${image.fullImage}`;
       img.alt = `Product full image ${id}`;
+      img.setAttribute("aria-role", "");
       imageRow.appendChild(img);
     });
   }
@@ -55,9 +67,12 @@ export function lightboxMain(images: imagesInterface[]): void {
   function appendThumbnails(): void {
     images.map((image: imagesInterface, id: number) => {
       const button = document.createElement("button") as HTMLButtonElement;
+      button.setAttribute("aria-label", `Lightbox product thumbnail ${id + 1}`);
       button.classList.add("lightbox__thumbnailBtn");
       if (id === activeImageIndex)
         button.classList.add("lightbox-activeThumbnail");
+      if (id === images.length - 1)
+        button.classList.add("lightbox__lastFocusableElement");
       const img = document.createElement("img") as HTMLImageElement;
       img.src = `./images/${image.thumbnail}`;
       img.alt = `Product thumbnail ${id}`;
@@ -73,6 +88,7 @@ export function lightboxMain(images: imagesInterface[]): void {
 
   function closeLightbox(): void {
     lightbox.classList.remove("lightbox-active");
+    currentFocusableFullImageBtn.focus();
   }
 
   backdrop.addEventListener("click", closeLightbox);
@@ -100,7 +116,24 @@ function setActiveImageIndex(index: number): void {
 }
 export function openLightbox(index): void {
   lightbox.classList.add("lightbox-active");
+  closeBtn.focus();
   moveSlider(index);
   setActiveImageIndex(index);
   setActiveThumbnail();
+}
+
+// FOCUS TRAP
+function applyFocusTrap() {
+  const topFocusTrap = lightbox.querySelector(
+    ".lightbox__topFocusTrap"
+  ) as HTMLDivElement;
+  const bottomFocusTrap = lightbox.querySelector(
+    ".lightbox__bottomFocusTrap"
+  ) as HTMLDivElement;
+  const lastFocusableElement = lightbox.querySelector(
+    ".lightbox__lastFocusableElement"
+  ) as HTMLButtonElement;
+
+  topFocusTrap.addEventListener("focus", () => lastFocusableElement.focus());
+  bottomFocusTrap.addEventListener("focus", () => closeBtn.focus());
 }
