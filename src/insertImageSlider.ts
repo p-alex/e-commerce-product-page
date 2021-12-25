@@ -1,4 +1,6 @@
 import { imagesInterface } from "./interfaces/index";
+import { openLightbox } from "./lightbox.js";
+openLightbox;
 
 let currentSliderIndex = 0;
 
@@ -27,6 +29,7 @@ export function insertImageSlider(
       fullImage.classList.add("product__fullImage");
       fullImage.alt = `Product full image ${index}`;
 
+      fullImage.addEventListener("click", () => openLightbox(index));
       fullImagesRow.appendChild(fullImage);
     });
   }

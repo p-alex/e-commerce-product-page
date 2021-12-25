@@ -5,6 +5,7 @@ import { amountCounter } from "./amountCounter.js";
 //interfaces
 import { detailsInterface } from "./interfaces/index";
 import { checkIfCartIsEmpty } from "./cart.js";
+import { lightboxMain } from "./lightbox.js";
 
 // fetching data about the product
 async function getProduct() {
@@ -27,6 +28,7 @@ async function main() {
   insertImageSlider(name, images);
   insertProductDetails({ company, name, description, price, discount, images });
   amountCounter();
+  lightboxMain(images);
 }
 
 main();

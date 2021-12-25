@@ -12,6 +12,7 @@ import { insertImageSlider } from "./insertImageSlider.js";
 import { navFunctionality } from "./nav.js";
 import { amountCounter } from "./amountCounter.js";
 import { checkIfCartIsEmpty } from "./cart.js";
+import { lightboxMain } from "./lightbox.js";
 // fetching data about the product
 function getProduct() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,6 +28,7 @@ function main() {
         insertImageSlider(name, images);
         insertProductDetails({ company, name, description, price, discount, images });
         amountCounter();
+        lightboxMain(images);
     });
 }
 main();
