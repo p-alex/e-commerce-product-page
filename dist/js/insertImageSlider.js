@@ -1,14 +1,23 @@
+import { openLightbox } from "./lightbox.js";
+openLightbox;
+let currentSliderIndex = 0;
 export function insertImageSlider(name, images) {
-    const grid = document.querySelector(".product__imagesGridContainer");
-    // Appending full image
-    const fullImage = document.createElement("img");
-    fullImage.width = 450;
-    fullImage.height = 450;
-    fullImage.src = `images/${images[0].fullImage}`;
-    fullImage.classList.add("product__fullImage");
-    fullImage.alt = `Product full image`;
-    grid.appendChild(fullImage);
+    const fullImagesRow = document.querySelector(".product__fullImagesRow");
+    const thumbnailsContainer = document.querySelector(".product__thumbnails");
+    const sliderCtrls = document.querySelectorAll(".product__sliderCtrl");
+    appendFullImages();
     appendThumbnails();
+    // Appending full images
+    function appendFullImages() {
+        images.forEach((image, index) => {
+            const fullImage = document.createElement("img");
+            fullImage.src = `images/${image.fullImage}`;
+            fullImage.classList.add("product__fullImage");
+            fullImage.alt = `Product full image ${index}`;
+            fullImage.addEventListener("click", () => openLightbox(index));
+            fullImagesRow.appendChild(fullImage);
+        });
+    }
     // Appending the thumbnails
     function appendThumbnails() {
         images.forEach((image, id) => {
@@ -19,27 +28,48 @@ export function insertImageSlider(name, images) {
             //Adding thumbnail image to the thumbnail button
             const thumbnail = document.createElement("img");
             thumbnail.src = `images/${image.thumbnail}`;
-            thumbnail.width = 90;
-            thumbnail.height = 90;
-            thumbnail.classList.add("product__thumbnail");
             thumbnail.alt = `Product thumbnail ${id}`;
             if (id === 0) {
                 thumbnailBtn.classList.add("active-thumbnail");
             }
-            thumbnailBtn.addEventListener("click", () => displayNewFullImage(id));
+            thumbnail.addEventListener("click", () => {
+                moveSlider(id);
+                setCurrentActiveThumbnail(id);
+            });
             thumbnailBtn.appendChild(thumbnail);
-            grid.appendChild(thumbnailBtn);
+            thumbnailsContainer.appendChild(thumbnailBtn);
         });
     }
-    function displayNewFullImage(id) {
-        const thumbnailBtns = document.querySelectorAll(".product__thumbnailBtn");
-        fullImage.src = `images/${images[id].fullImage}`;
-        thumbnailBtns.forEach((btn, index) => {
-            if (btn.classList.contains("active-thumbnail")) {
-                btn.classList.remove("active-thumbnail");
+    // applying event listeners to slider ctrls
+    // to increment or decrement currentSliderIndex
+    sliderCtrls.forEach((ctrl) => {
+        ctrl.addEventListener("click", () => {
+            if (ctrl.classList.contains("ctrl-left")) {
+                if (currentSliderIndex - 1 >= 0) {
+                    moveSlider(currentSliderIndex - 1);
+                    setCurrentActiveThumbnail(currentSliderIndex);
+                }
             }
-            if (index === id) {
-                btn.classList.add("active-thumbnail");
+            else {
+                if (currentSliderIndex + 1 <= images.length - 1) {
+                    moveSlider(currentSliderIndex + 1);
+                    setCurrentActiveThumbnail(currentSliderIndex);
+                }
+            }
+        });
+    });
+    function moveSlider(index) {
+        fullImagesRow.style.transform = `translateX(-${100 * index}%)`;
+        currentSliderIndex = index;
+    }
+    function setCurrentActiveThumbnail(id) {
+        const thumbnails = document.querySelectorAll(".product__thumbnailBtn");
+        thumbnails.forEach((thumbnail, index) => {
+            if (thumbnail.classList.contains("active-thumbnail")) {
+                thumbnail.classList.remove("active-thumbnail");
+            }
+            if (id === index) {
+                thumbnail.classList.add("active-thumbnail");
             }
         });
     }
