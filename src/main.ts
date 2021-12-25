@@ -10,7 +10,8 @@ import { lightboxMain } from "./lightbox.js";
 // fetching data about the product
 async function getProduct() {
   const response = await fetch("data.json");
-  return await response.json();
+  const json = await response.json();
+  return json;
 }
 
 async function main() {

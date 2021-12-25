@@ -35,7 +35,6 @@ export function lightboxMain(images: imagesInterface[]): void {
     if (activeImageIndex < 0) {
       activeImageIndex = images.length - 1;
     }
-
     moveSlider(activeImageIndex);
     setActiveImageIndex(activeImageIndex);
     setActiveThumbnail();

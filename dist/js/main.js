@@ -17,7 +17,8 @@ import { lightboxMain } from "./lightbox.js";
 function getProduct() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch("data.json");
-        return yield response.json();
+        const json = yield response.json();
+        return json;
     });
 }
 function main() {
